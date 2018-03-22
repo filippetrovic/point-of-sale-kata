@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="point-of-sale_main" target="1.8" />
+      <module name="point-of-sale_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
