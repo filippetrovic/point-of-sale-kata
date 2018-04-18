@@ -10,6 +10,7 @@ import software.craftsmanship.serbia.impl.catalog.Catalog;
 import software.craftsmanship.serbia.impl.catalog.ProductInfo;
 import software.craftsmanship.serbia.impl.display.Message;
 import software.craftsmanship.serbia.impl.display.SaleDisplay;
+import software.craftsmanship.serbia.impl.domain.Barcode;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -34,7 +35,8 @@ public class PointOfSaleOnBarcodeTest {
     public void shouldDisplayPriceOnDisplay() {
 
         // Given
-        when(catalog.getPrice("barcode")).thenReturn(new ProductInfo("Laptop", 56.99));
+        when(catalog.getPrice(Barcode.from("barcode")))
+             .thenReturn(new ProductInfo("Laptop", 56.99));
 
         // When
         pointOfSale.onBarcode("barcode");
