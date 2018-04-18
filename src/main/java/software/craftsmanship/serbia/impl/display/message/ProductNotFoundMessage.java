@@ -1,6 +1,6 @@
 package software.craftsmanship.serbia.impl.display.message;
 
-public class ProductNotFoundProductInfoMessage implements Message {
+class ProductNotFoundMessage implements Message {
 
     @Override
     public String getFormattedMessage() {
@@ -9,6 +9,6 @@ public class ProductNotFoundProductInfoMessage implements Message {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof ProductNotFoundProductInfoMessage;
+        return obj instanceof ProductNotFoundMessage;
     }
 }

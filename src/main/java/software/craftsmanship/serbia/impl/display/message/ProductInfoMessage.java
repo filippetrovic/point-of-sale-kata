@@ -4,7 +4,7 @@ import software.craftsmanship.serbia.impl.catalog.ProductInfo;
 
 import java.util.Objects;
 
-public class ProductInfoMessage implements Message {
+class ProductInfoMessage implements Message {
 
     private final ProductInfo productInfo;
 

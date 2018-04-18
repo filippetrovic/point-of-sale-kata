@@ -9,8 +9,7 @@ import software.craftsmanship.serbia.PointOfSale;
 import software.craftsmanship.serbia.impl.catalog.Catalog;
 import software.craftsmanship.serbia.impl.catalog.ProductInfo;
 import software.craftsmanship.serbia.impl.display.SaleDisplay;
-import software.craftsmanship.serbia.impl.display.message.ProductInfoMessage;
-import software.craftsmanship.serbia.impl.display.message.ProductNotFoundProductInfoMessage;
+import software.craftsmanship.serbia.impl.display.message.MessageFactory;
 import software.craftsmanship.serbia.impl.domain.Barcode;
 
 import java.util.Optional;
@@ -45,7 +44,7 @@ public class PointOfSaleOnBarcodeTest {
         pointOfSale.onBarcode("barcode");
 
         // Then
-        verify(saleDisplay).display(new ProductInfoMessage(new ProductInfo("Laptop", 56.99)));
+        verify(saleDisplay).display(MessageFactory.productInfo(new ProductInfo("Laptop", 56.99)));
 
     }
 
@@ -60,7 +59,7 @@ public class PointOfSaleOnBarcodeTest {
         pointOfSale.onBarcode("not_found_barcode");
 
         // Then
-        verify(saleDisplay).display(new ProductNotFoundProductInfoMessage());
+        verify(saleDisplay).display(MessageFactory.productNotFound());
 
 
     }

@@ -4,8 +4,7 @@ import software.craftsmanship.serbia.PointOfSale;
 import software.craftsmanship.serbia.impl.catalog.Catalog;
 import software.craftsmanship.serbia.impl.catalog.ProductInfo;
 import software.craftsmanship.serbia.impl.display.SaleDisplay;
-import software.craftsmanship.serbia.impl.display.message.ProductInfoMessage;
-import software.craftsmanship.serbia.impl.display.message.ProductNotFoundProductInfoMessage;
+import software.craftsmanship.serbia.impl.display.message.MessageFactory;
 import software.craftsmanship.serbia.impl.domain.Barcode;
 
 import java.util.Optional;
@@ -25,9 +24,9 @@ public class PointOfSaleImpl implements PointOfSale {
         final Optional<ProductInfo> productInfo = catalog.getProductInfo(Barcode.from(barcode));
 
         if (productInfo.isPresent()) {
-            saleDisplay.display(new ProductInfoMessage(productInfo.get()));
+            saleDisplay.display(MessageFactory.productInfo(productInfo.get()));
         } else {
-            saleDisplay.display(new ProductNotFoundProductInfoMessage());
+            saleDisplay.display(MessageFactory.productNotFound());
         }
     }
 
