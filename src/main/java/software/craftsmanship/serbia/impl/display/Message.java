@@ -26,4 +26,11 @@ public class Message {
     public int hashCode() {
         return Objects.hash(message);
     }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+             "message='" + message + '\'' +
+             '}';
+    }
 }
