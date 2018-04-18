@@ -8,9 +8,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import software.craftsmanship.serbia.PointOfSale;
 import software.craftsmanship.serbia.impl.catalog.Catalog;
 import software.craftsmanship.serbia.impl.catalog.ProductInfo;
-import software.craftsmanship.serbia.impl.display.ProductInfoMessage;
-import software.craftsmanship.serbia.impl.display.ProductNotFoundProductInfoMessage;
 import software.craftsmanship.serbia.impl.display.SaleDisplay;
+import software.craftsmanship.serbia.impl.display.message.ProductInfoMessage;
+import software.craftsmanship.serbia.impl.display.message.ProductNotFoundProductInfoMessage;
 import software.craftsmanship.serbia.impl.domain.Barcode;
 
 import java.util.Optional;

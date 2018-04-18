@@ -1,4 +1,4 @@
-package software.craftsmanship.serbia.impl.display;
+package software.craftsmanship.serbia.impl.display.message;
 
 import software.craftsmanship.serbia.impl.catalog.ProductInfo;
 
