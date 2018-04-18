@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import software.craftsmanship.serbia.PointOfSale;
 import software.craftsmanship.serbia.impl.catalog.Catalog;
+import software.craftsmanship.serbia.impl.display.Message;
 import software.craftsmanship.serbia.impl.display.SaleDisplay;
 
 import static org.mockito.Mockito.verify;
@@ -38,7 +39,7 @@ public class PointOfSaleOnBarcodeTest {
         pointOfSale.onBarcode("barcode");
 
         // Then
-        verify(saleDisplay).display("56.99");
+        verify(saleDisplay).display(new Message("56.99"));
 
     }
 

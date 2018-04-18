@@ -2,6 +2,7 @@ package software.craftsmanship.serbia.impl;
 
 import software.craftsmanship.serbia.PointOfSale;
 import software.craftsmanship.serbia.impl.catalog.Catalog;
+import software.craftsmanship.serbia.impl.display.Message;
 import software.craftsmanship.serbia.impl.display.SaleDisplay;
 
 public class PointOfSaleImpl implements PointOfSale {
@@ -18,7 +19,7 @@ public class PointOfSaleImpl implements PointOfSale {
     public void onBarcode(String barcode) {
         final double price = catalog.getPrice(barcode);
 
-        saleDisplay.display(String.valueOf(price));
+        saleDisplay.display(new Message(String.valueOf(price)));
 
     }
 
