@@ -1,13 +1,15 @@
 package software.craftsmanship.serbia.impl.display;
 
+import software.craftsmanship.serbia.impl.catalog.ProductInfo;
+
 import java.util.Objects;
 
 public class Message {
 
-    private String message;
+    private final ProductInfo productInfo;
 
-    public Message(String message) {
-        this.message = message;
+    public Message(ProductInfo productInfo) {
+        this.productInfo = productInfo;
     }
 
     @Override
@@ -18,19 +20,19 @@ public class Message {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Message message1 = (Message) o;
-        return Objects.equals(message, message1.message);
+        Message message = (Message) o;
+        return Objects.equals(productInfo, message.productInfo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(message);
+        return Objects.hash(productInfo);
     }
 
     @Override
     public String toString() {
         return "Message{" +
-             "message='" + message + '\'' +
+             "productInfo=" + productInfo +
              '}';
     }
 }

@@ -2,6 +2,6 @@ package software.craftsmanship.serbia.impl.catalog;
 
 public interface Catalog {
 
-    Price getPrice(String barcode);
+    ProductInfo getPrice(String barcode);
 
 }
