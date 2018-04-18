@@ -4,6 +4,6 @@ import software.craftsmanship.serbia.impl.domain.Barcode;
 
 public interface Catalog {
 
-    ProductInfo getPrice(Barcode barcode);
+    ProductInfo getProductInfo(Barcode barcode);
 
 }

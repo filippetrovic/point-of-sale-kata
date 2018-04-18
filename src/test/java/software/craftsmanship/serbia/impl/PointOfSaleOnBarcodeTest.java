@@ -35,7 +35,7 @@ public class PointOfSaleOnBarcodeTest {
     public void shouldDisplayPriceOnDisplay() {
 
         // Given
-        when(catalog.getPrice(Barcode.from("barcode")))
+        when(catalog.getProductInfo(Barcode.from("barcode")))
              .thenReturn(new ProductInfo("Laptop", 56.99));
 
         // When

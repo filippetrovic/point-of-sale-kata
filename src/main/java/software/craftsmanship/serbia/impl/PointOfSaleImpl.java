@@ -19,7 +19,7 @@ public class PointOfSaleImpl implements PointOfSale {
 
     @Override
     public void onBarcode(String barcode) {
-        final ProductInfo productInfo = catalog.getPrice(Barcode.from(barcode));
+        final ProductInfo productInfo = catalog.getProductInfo(Barcode.from(barcode));
 
         saleDisplay.display(new Message(productInfo));
     }
