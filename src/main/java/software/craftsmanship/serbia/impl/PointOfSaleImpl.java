@@ -5,7 +5,7 @@ import software.craftsmanship.serbia.impl.catalog.Catalog;
 import software.craftsmanship.serbia.impl.catalog.ProductInfo;
 import software.craftsmanship.serbia.impl.display.SaleDisplay;
 import software.craftsmanship.serbia.impl.display.message.MessageFactory;
-import software.craftsmanship.serbia.impl.domain.Barcode;
+import software.craftsmanship.serbia.impl.domain.BarcodeFactory;
 
 import java.util.Optional;
 
@@ -21,7 +21,7 @@ public class PointOfSaleImpl implements PointOfSale {
 
     @Override
     public void onBarcode(String barcode) {
-        final Optional<ProductInfo> productInfo = catalog.getProductInfo(Barcode.from(barcode));
+        final Optional<ProductInfo> productInfo = catalog.getProductInfo(BarcodeFactory.from(barcode));
 
         if (productInfo.isPresent()) {
             saleDisplay.display(MessageFactory.productInfo(productInfo.get()));

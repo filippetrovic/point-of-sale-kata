@@ -10,7 +10,7 @@ import software.craftsmanship.serbia.impl.catalog.Catalog;
 import software.craftsmanship.serbia.impl.catalog.ProductInfo;
 import software.craftsmanship.serbia.impl.display.SaleDisplay;
 import software.craftsmanship.serbia.impl.display.message.MessageFactory;
-import software.craftsmanship.serbia.impl.domain.Barcode;
+import software.craftsmanship.serbia.impl.domain.BarcodeFactory;
 
 import java.util.Optional;
 
@@ -37,11 +37,11 @@ public class PointOfSaleOnBarcodeTest {
     public void shouldDisplayPriceOnDisplay() {
 
         // Given
-        when(catalog.getProductInfo(Barcode.from("barcode")))
+        when(catalog.getProductInfo(BarcodeFactory.from("123456")))
              .thenReturn(Optional.of(new ProductInfo("Laptop", 56.99)));
 
         // When
-        pointOfSale.onBarcode("barcode");
+        pointOfSale.onBarcode("123456");
 
         // Then
         verify(saleDisplay).display(MessageFactory.productInfo(new ProductInfo("Laptop", 56.99)));
@@ -52,11 +52,11 @@ public class PointOfSaleOnBarcodeTest {
     public void shouldDisplayProductNotFound() {
 
         // Given
-        when(catalog.getProductInfo(Barcode.from("not_found_barcode")))
+        when(catalog.getProductInfo(BarcodeFactory.from("123456")))
              .thenReturn(Optional.empty());
 
         // When
-        pointOfSale.onBarcode("not_found_barcode");
+        pointOfSale.onBarcode("123456");
 
         // Then
         verify(saleDisplay).display(MessageFactory.productNotFound());

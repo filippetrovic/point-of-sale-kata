@@ -6,12 +6,8 @@ public class Barcode {
 
     private String code;
 
-    private Barcode(String code) {
+    Barcode(String code) {
         this.code = code;
-    }
-
-    public static Barcode from(String code) {
-        return new Barcode(code);
     }
 
     @Override
