@@ -8,9 +8,12 @@ import org.mockito.junit.MockitoJUnitRunner;
 import software.craftsmanship.serbia.PointOfSale;
 import software.craftsmanship.serbia.impl.catalog.Catalog;
 import software.craftsmanship.serbia.impl.catalog.ProductInfo;
-import software.craftsmanship.serbia.impl.display.Message;
+import software.craftsmanship.serbia.impl.display.ProductInfoMessage;
+import software.craftsmanship.serbia.impl.display.ProductNotFoundProductInfoMessage;
 import software.craftsmanship.serbia.impl.display.SaleDisplay;
 import software.craftsmanship.serbia.impl.domain.Barcode;
+
+import java.util.Optional;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -36,14 +39,29 @@ public class PointOfSaleOnBarcodeTest {
 
         // Given
         when(catalog.getProductInfo(Barcode.from("barcode")))
-             .thenReturn(new ProductInfo("Laptop", 56.99));
+             .thenReturn(Optional.of(new ProductInfo("Laptop", 56.99)));
 
         // When
         pointOfSale.onBarcode("barcode");
 
         // Then
-        verify(saleDisplay).display(new Message(new ProductInfo("Laptop", 56.99)));
+        verify(saleDisplay).display(new ProductInfoMessage(new ProductInfo("Laptop", 56.99)));
 
     }
 
+    @Test
+    public void shouldDisplayProductNotFound() {
+
+        // Given
+        when(catalog.getProductInfo(Barcode.from("not_found_barcode")))
+             .thenReturn(Optional.empty());
+
+        // When
+        pointOfSale.onBarcode("not_found_barcode");
+
+        // Then
+        verify(saleDisplay).display(new ProductNotFoundProductInfoMessage());
+
+
+    }
 }

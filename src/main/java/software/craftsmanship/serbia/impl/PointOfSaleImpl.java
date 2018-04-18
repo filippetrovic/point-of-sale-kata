@@ -3,9 +3,12 @@ package software.craftsmanship.serbia.impl;
 import software.craftsmanship.serbia.PointOfSale;
 import software.craftsmanship.serbia.impl.catalog.Catalog;
 import software.craftsmanship.serbia.impl.catalog.ProductInfo;
-import software.craftsmanship.serbia.impl.display.Message;
+import software.craftsmanship.serbia.impl.display.ProductInfoMessage;
+import software.craftsmanship.serbia.impl.display.ProductNotFoundProductInfoMessage;
 import software.craftsmanship.serbia.impl.display.SaleDisplay;
 import software.craftsmanship.serbia.impl.domain.Barcode;
+
+import java.util.Optional;
 
 public class PointOfSaleImpl implements PointOfSale {
 
@@ -19,9 +22,13 @@ public class PointOfSaleImpl implements PointOfSale {
 
     @Override
     public void onBarcode(String barcode) {
-        final ProductInfo productInfo = catalog.getProductInfo(Barcode.from(barcode));
+        final Optional<ProductInfo> productInfo = catalog.getProductInfo(Barcode.from(barcode));
 
-        saleDisplay.display(new Message(productInfo));
+        if (productInfo.isPresent()) {
+            saleDisplay.display(new ProductInfoMessage(productInfo.get()));
+        } else {
+            saleDisplay.display(new ProductNotFoundProductInfoMessage());
+        }
     }
 
     @Override
