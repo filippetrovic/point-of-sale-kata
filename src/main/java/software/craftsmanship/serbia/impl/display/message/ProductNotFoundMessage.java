@@ -12,4 +12,9 @@ class ProductNotFoundMessage implements Message {
     public boolean equals(Object obj) {
         return obj instanceof ProductNotFoundMessage;
     }
+
+    @Override
+    public String toString() {
+        return "ProductNotFoundMessage{}";
+    }
 }
