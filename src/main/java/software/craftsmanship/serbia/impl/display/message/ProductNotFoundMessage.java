@@ -4,7 +4,8 @@ class ProductNotFoundMessage implements Message {
 
     @Override
     public String getFormattedMessage() {
-        return null;
+        // This should probably come from i18n file
+        return "Product not found";
     }
 
     @Override

@@ -1,8 +1,8 @@
 package software.craftsmanship.serbia.impl.display.message;
 
-import software.craftsmanship.serbia.impl.catalog.ProductInfo;
+import software.craftsmanship.serbia.impl.catalog.*;
 
-import java.util.Objects;
+import java.util.*;
 
 class ProductInfoMessage implements Message {
 
@@ -38,6 +38,7 @@ class ProductInfoMessage implements Message {
 
     @Override
     public String getFormattedMessage() {
-        return null;
+        // This should probably come from i18n file
+        return String.format("%s: %.2f", productInfo.getName(), productInfo.getPrice());
     }
 }
