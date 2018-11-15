@@ -47,5 +47,36 @@ public class PointOfSaleTotalTest {
 
     }
 
+    @Test
+    @Ignore
+    public void shouldReturnPriceOfOneProduct() {
 
+        // Given
+        pointOfSale.onBarcode(LAPTOP_BARCODE);
+
+        // When
+        String total = pointOfSale.total();
+
+        // Then
+        assertThat(total)
+                .isNotNull()
+                .isEqualToIgnoringNewLines("Total: 569.99");
+    }
+
+    @Test
+    @Ignore
+    public void shouldReturnTotalPriceOfScannedProducts() {
+
+        // Given
+        pointOfSale.onBarcode(LAPTOP_BARCODE);
+        pointOfSale.onBarcode(MONITOR_BARCODE);
+
+        // When
+        String total = pointOfSale.total();
+
+        // Then
+        assertThat(total)
+                .isNotNull()
+                .isEqualToIgnoringNewLines("Total: 914.98");
+    }
 }
