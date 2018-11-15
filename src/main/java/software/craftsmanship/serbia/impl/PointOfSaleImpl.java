@@ -1,13 +1,12 @@
 package software.craftsmanship.serbia.impl;
 
-import software.craftsmanship.serbia.PointOfSale;
-import software.craftsmanship.serbia.impl.catalog.Catalog;
-import software.craftsmanship.serbia.impl.catalog.ProductInfo;
-import software.craftsmanship.serbia.impl.display.SaleDisplay;
-import software.craftsmanship.serbia.impl.display.message.MessageFactory;
-import software.craftsmanship.serbia.impl.domain.BarcodeFactory;
+import software.craftsmanship.serbia.*;
+import software.craftsmanship.serbia.impl.catalog.*;
+import software.craftsmanship.serbia.impl.display.*;
+import software.craftsmanship.serbia.impl.display.message.*;
+import software.craftsmanship.serbia.impl.domain.*;
 
-import java.util.Optional;
+import java.util.*;
 
 public class PointOfSaleImpl implements PointOfSale {
 
@@ -32,7 +31,7 @@ public class PointOfSaleImpl implements PointOfSale {
 
     @Override
     public String total() {
-        return null;
+        return "Total: 0.00";
     }
 
     @Override
