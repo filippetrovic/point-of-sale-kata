@@ -1,27 +1,23 @@
 package software.craftsmanship.serbia.impl;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-import software.craftsmanship.serbia.PointOfSale;
-import software.craftsmanship.serbia.impl.catalog.Catalog;
-import software.craftsmanship.serbia.impl.catalog.ProductInfo;
-import software.craftsmanship.serbia.impl.display.SaleDisplay;
-import software.craftsmanship.serbia.impl.display.message.MessageFactory;
-import software.craftsmanship.serbia.impl.domain.BarcodeFactory;
+import org.junit.*;
+import org.junit.runner.*;
+import org.mockito.*;
+import org.mockito.junit.*;
+import software.craftsmanship.serbia.*;
+import software.craftsmanship.serbia.impl.catalog.*;
+import software.craftsmanship.serbia.impl.display.*;
+import software.craftsmanship.serbia.impl.display.message.*;
+import software.craftsmanship.serbia.impl.domain.*;
 
-import java.util.Optional;
+import java.util.*;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PointOfSaleOnBarcodeTest {
 
-    @Mock
-    private Catalog catalog;
+    private static final String LAPTOP_BARCODE = "123456";
 
     @Mock
     private SaleDisplay saleDisplay;
@@ -30,18 +26,18 @@ public class PointOfSaleOnBarcodeTest {
 
     @Before
     public void setUp() {
+        Catalog catalog = new InMemoryCatalog(new HashMap<Barcode, ProductInfo>() {{
+            put(BarcodeFactory.from(LAPTOP_BARCODE), new ProductInfo("Laptop", 56.99));
+        }});
+
         pointOfSale = new PointOfSaleImpl(saleDisplay, catalog);
     }
 
     @Test
     public void shouldDisplayPriceOnDisplay() {
 
-        // Given
-        when(catalog.getProductInfo(BarcodeFactory.from("123456")))
-             .thenReturn(Optional.of(new ProductInfo("Laptop", 56.99)));
-
         // When
-        pointOfSale.onBarcode("123456");
+        pointOfSale.onBarcode(LAPTOP_BARCODE);
 
         // Then
         verify(saleDisplay).display(MessageFactory.productInfo(new ProductInfo("Laptop", 56.99)));
@@ -51,12 +47,11 @@ public class PointOfSaleOnBarcodeTest {
     @Test
     public void shouldDisplayProductNotFound() {
 
-        // Given
-        when(catalog.getProductInfo(BarcodeFactory.from("123456")))
-             .thenReturn(Optional.empty());
+        // given
+        String nonExistingProductBarcode = "1111111";
 
         // When
-        pointOfSale.onBarcode("123456");
+        pointOfSale.onBarcode(nonExistingProductBarcode);
 
         // Then
         verify(saleDisplay).display(MessageFactory.productNotFound());
