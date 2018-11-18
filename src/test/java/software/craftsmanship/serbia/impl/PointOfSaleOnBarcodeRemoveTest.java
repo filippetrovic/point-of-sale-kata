@@ -50,5 +50,20 @@ public class PointOfSaleOnBarcodeRemoveTest {
                 .display(MessageFactory.total(0.0));
     }
 
+    @Test
+    public void shouldExcludeRemovedProductFromTotal() {
+
+        // Given
+        pointOfSale.onBarcode(LAPTOP_BARCODE);
+        pointOfSale.onBarcode(MONITOR_BARCODE);
+
+        // When
+        pointOfSale.onBarcodeRemove(MONITOR_BARCODE);
+
+        // Then
+        pointOfSale.total();
+        verify(saleDisplay)
+                .display(MessageFactory.total(569.99));
+    }
 
 }
