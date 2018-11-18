@@ -8,7 +8,7 @@ import software.craftsmanship.serbia.*;
 import software.craftsmanship.serbia.impl.catalog.*;
 import software.craftsmanship.serbia.impl.display.*;
 import software.craftsmanship.serbia.impl.display.message.*;
-import software.craftsmanship.serbia.impl.domain.*;
+import software.craftsmanship.serbia.impl.domain.barcode.*;
 
 import java.util.*;
 

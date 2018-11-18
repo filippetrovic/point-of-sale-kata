@@ -1,11 +1,10 @@
-package software.craftsmanship.serbia.impl.domain;
+package software.craftsmanship.serbia.impl.domain.barcode;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.*;
+import org.junit.runner.*;
+import org.junit.runners.*;
 
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
 
 @RunWith(Parameterized.class)
 public class BarcodeValidTest {

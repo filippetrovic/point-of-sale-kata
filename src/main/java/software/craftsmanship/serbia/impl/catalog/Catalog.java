@@ -1,8 +1,8 @@
 package software.craftsmanship.serbia.impl.catalog;
 
-import software.craftsmanship.serbia.impl.domain.Barcode;
+import software.craftsmanship.serbia.impl.domain.barcode.*;
 
-import java.util.Optional;
+import java.util.*;
 
 public interface Catalog {
 

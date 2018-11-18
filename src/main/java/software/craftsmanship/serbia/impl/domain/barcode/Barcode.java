@@ -1,6 +1,6 @@
-package software.craftsmanship.serbia.impl.domain;
+package software.craftsmanship.serbia.impl.domain.barcode;
 
-import java.util.Objects;
+import java.util.*;
 
 public class Barcode {
 

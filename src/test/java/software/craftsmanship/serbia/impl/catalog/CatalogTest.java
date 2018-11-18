@@ -1,12 +1,9 @@
 package software.craftsmanship.serbia.impl.catalog;
 
-import org.junit.Test;
-import software.craftsmanship.serbia.impl.domain.Barcode;
-import software.craftsmanship.serbia.impl.domain.BarcodeFactory;
+import org.junit.*;
+import software.craftsmanship.serbia.impl.domain.barcode.*;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.*;
 

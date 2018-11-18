@@ -1,4 +1,4 @@
-package software.craftsmanship.serbia.impl.domain;
+package software.craftsmanship.serbia.impl.domain.barcode;
 
 public class BarcodeFactory {
 
