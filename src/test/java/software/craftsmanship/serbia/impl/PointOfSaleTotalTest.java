@@ -63,7 +63,6 @@ public class PointOfSaleTotalTest {
     }
 
     @Test
-    @Ignore
     public void shouldReturnTotalPriceOfScannedProducts() {
 
         // Given

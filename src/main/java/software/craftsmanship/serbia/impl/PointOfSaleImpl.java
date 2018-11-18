@@ -26,7 +26,7 @@ public class PointOfSaleImpl implements PointOfSale {
 
         if (productInfo.isPresent()) {
 
-            totalAmount = productInfo.get().getPrice();
+            totalAmount += productInfo.get().getPrice();
 
             saleDisplay.display(MessageFactory.productInfo(productInfo.get()));
         } else {
