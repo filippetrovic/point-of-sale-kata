@@ -24,6 +24,13 @@ class TotalMessage implements Message {
     }
 
     @Override
+    public String toString() {
+        return "TotalMessage{" +
+                "totalAmount=" + totalAmount +
+                '}';
+    }
+
+    @Override
     public String getFormattedMessage() {
         // This should probably come from i18n file
         return String.format("Total: %.2f", totalAmount);
