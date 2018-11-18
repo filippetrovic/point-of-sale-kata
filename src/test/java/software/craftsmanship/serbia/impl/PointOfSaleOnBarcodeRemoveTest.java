@@ -66,4 +66,16 @@ public class PointOfSaleOnBarcodeRemoveTest {
                 .display(MessageFactory.total(569.99));
     }
 
+    @Test
+    public void shouldDisplayProductNotFoundForProductThatIsNotInCatalog() {
+        // Given
+        final String nonExistingBarcode = "3333333";
+
+        // When
+        pointOfSale.onBarcodeRemove(nonExistingBarcode);
+
+        // Then
+        verify(saleDisplay)
+                .display(MessageFactory.productNotFound());
+    }
 }
