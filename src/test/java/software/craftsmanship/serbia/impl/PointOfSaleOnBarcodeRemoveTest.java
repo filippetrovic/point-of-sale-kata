@@ -80,7 +80,6 @@ public class PointOfSaleOnBarcodeRemoveTest {
     }
 
     @Test
-    @Ignore
     public void shouldDisplayProductNotInShoppingCartWhenRemovingBarcodeThatWasNotScannedBefore() {
         // Given
         // LAPTOP_BARCODE is not scanned
@@ -93,4 +92,6 @@ public class PointOfSaleOnBarcodeRemoveTest {
                 .display(MessageFactory.productNotInShoppingCart());
 
     }
+
+    // multiple remove
 }

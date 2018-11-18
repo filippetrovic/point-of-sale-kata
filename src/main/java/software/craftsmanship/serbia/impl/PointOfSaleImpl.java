@@ -14,6 +14,7 @@ public class PointOfSaleImpl implements PointOfSale {
     private Catalog catalog;
 
     private double totalAmount = 0.0;
+    private List<ProductInfo> shoppingCart = new LinkedList<>();
 
     public PointOfSaleImpl(SaleDisplay saleDisplay, Catalog catalog) {
         this.saleDisplay = saleDisplay;
@@ -26,11 +27,17 @@ public class PointOfSaleImpl implements PointOfSale {
 
         if (productInfo.isPresent()) {
 
-            totalAmount += productInfo.get().getPrice();
+            final ProductInfo scannedProduct = productInfo.get();
 
-            saleDisplay.display(MessageFactory.productInfo(productInfo.get()));
+            shoppingCart.add(scannedProduct);
+            totalAmount += scannedProduct.getPrice();
+
+            saleDisplay.display(MessageFactory.productInfo(scannedProduct));
+
         } else {
+
             saleDisplay.display(MessageFactory.productNotFound());
+
         }
     }
 
@@ -43,11 +50,21 @@ public class PointOfSaleImpl implements PointOfSale {
     public void onBarcodeRemove(String barcode) {
         final Optional<ProductInfo> productInfo = catalog.getProductInfo(BarcodeFactory.from(barcode));
 
-        if (productInfo.isPresent()) {
-            totalAmount -= productInfo.get().getPrice();
-        } else {
+        if (!productInfo.isPresent()) {
             saleDisplay.display(MessageFactory.productNotFound());
+            return;
         }
 
+        if (!isProductInShoppingCart(productInfo.get())) {
+            saleDisplay.display(MessageFactory.productNotInShoppingCart());
+            return;
+        }
+
+        totalAmount -= productInfo.get().getPrice();
+
+    }
+
+    private boolean isProductInShoppingCart(ProductInfo productInfo) {
+        return shoppingCart.contains(productInfo);
     }
 }
