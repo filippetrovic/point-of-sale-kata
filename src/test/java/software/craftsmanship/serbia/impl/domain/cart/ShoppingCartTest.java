@@ -34,8 +34,8 @@ public class ShoppingCartTest {
     public void getTotalShouldReturnSumOfProductPrices() {
 
         // Given
-        cart.put(new ProductInfo("dummy 1", 120.5));
-        cart.put(new ProductInfo("dummy 2", 0.5));
+        cart.put(new ProductInfo("dummy 1", MoneyAmount.serbianDinars(120.5)));
+        cart.put(new ProductInfo("dummy 2", MoneyAmount.serbianDinars(0.5)));
 
         // When
         MoneyAmount total = cart.getTotal();
@@ -49,10 +49,10 @@ public class ShoppingCartTest {
     @Test(expected = ProductNotFound.class)
     public void removeShouldThrowExceptionIfProductIsNotInCart() throws ProductNotFound {
         // Given
-        cart.put(new ProductInfo("dummy", 222));
+        cart.put(new ProductInfo("dummy", MoneyAmount.serbianDinars(222)));
 
         // When
-        cart.remove(new ProductInfo("some other product", 333));
+        cart.remove(new ProductInfo("some other product", MoneyAmount.serbianDinars(333)));
 
         // Then
         // exception is thrown
@@ -62,13 +62,13 @@ public class ShoppingCartTest {
     @Test
     public void totalShouldNotCountRemovedProducts() throws ProductNotFound {
         // Given
-        cart.put(new ProductInfo("product 1", 100));
-        cart.put(new ProductInfo("product 2", 100));
-        cart.put(new ProductInfo("product 1", 100));
-        cart.put(new ProductInfo("product 3", 200));
+        cart.put(new ProductInfo("product 1", MoneyAmount.serbianDinars(100)));
+        cart.put(new ProductInfo("product 2", MoneyAmount.serbianDinars(100)));
+        cart.put(new ProductInfo("product 1", MoneyAmount.serbianDinars(100)));
+        cart.put(new ProductInfo("product 3", MoneyAmount.serbianDinars(200)));
 
-        cart.remove(new ProductInfo("product 1", 100));
-        cart.remove(new ProductInfo("product 3", 200));
+        cart.remove(new ProductInfo("product 1", MoneyAmount.serbianDinars(100)));
+        cart.remove(new ProductInfo("product 3", MoneyAmount.serbianDinars(200)));
 
         // When
         MoneyAmount total = cart.getTotal();

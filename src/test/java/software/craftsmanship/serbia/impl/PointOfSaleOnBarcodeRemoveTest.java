@@ -29,8 +29,8 @@ public class PointOfSaleOnBarcodeRemoveTest {
     @Before
     public void setUp() {
         Catalog catalog = new InMemoryCatalog(new HashMap<Barcode, ProductInfo>() {{
-            put(BarcodeFactory.from(LAPTOP_BARCODE), new ProductInfo("Laptop", 569.99));
-            put(BarcodeFactory.from(MONITOR_BARCODE), new ProductInfo("Monitor", 344.99));
+            put(BarcodeFactory.from(LAPTOP_BARCODE), new ProductInfo("Laptop", MoneyAmount.serbianDinars(569.99)));
+            put(BarcodeFactory.from(MONITOR_BARCODE), new ProductInfo("Monitor", MoneyAmount.serbianDinars(344.99)));
         }});
 
         pointOfSale = new PointOfSaleImpl(saleDisplay, catalog);

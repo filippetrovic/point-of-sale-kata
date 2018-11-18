@@ -1,44 +1,34 @@
 package software.craftsmanship.serbia.impl.catalog;
 
-import java.util.Objects;
+import software.craftsmanship.serbia.impl.domain.money.*;
+
+import java.util.*;
 
 public class ProductInfo {
 
-    private double price;
+    private MoneyAmount price;
     private String name;
 
-    public ProductInfo(String name, double price) {
+    public ProductInfo(String name, MoneyAmount price) {
         this.price = price;
         this.name = name;
     }
 
-    public double getPrice() {
+    public MoneyAmount getPrice() {
         return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         ProductInfo that = (ProductInfo) o;
-        return Double.compare(that.price, price) == 0 &&
-             Objects.equals(name, that.name);
+        return Objects.equals(price, that.price) &&
+                Objects.equals(name, that.name);
     }
 
     @Override

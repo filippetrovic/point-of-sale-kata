@@ -9,6 +9,7 @@ import software.craftsmanship.serbia.impl.catalog.*;
 import software.craftsmanship.serbia.impl.display.*;
 import software.craftsmanship.serbia.impl.display.message.*;
 import software.craftsmanship.serbia.impl.domain.barcode.*;
+import software.craftsmanship.serbia.impl.domain.money.*;
 
 import java.util.*;
 
@@ -27,7 +28,7 @@ public class PointOfSaleOnBarcodeTest {
     @Before
     public void setUp() {
         Catalog catalog = new InMemoryCatalog(new HashMap<Barcode, ProductInfo>() {{
-            put(BarcodeFactory.from(LAPTOP_BARCODE), new ProductInfo("Laptop", 56.99));
+            put(BarcodeFactory.from(LAPTOP_BARCODE), new ProductInfo("Laptop", MoneyAmount.serbianDinars(56.99)));
         }});
 
         pointOfSale = new PointOfSaleImpl(saleDisplay, catalog);
@@ -40,7 +41,8 @@ public class PointOfSaleOnBarcodeTest {
         pointOfSale.onBarcode(LAPTOP_BARCODE);
 
         // Then
-        verify(saleDisplay).display(MessageFactory.productInfo(new ProductInfo("Laptop", 56.99)));
+        verify(saleDisplay)
+                .display(MessageFactory.productInfo(new ProductInfo("Laptop", MoneyAmount.serbianDinars(56.99))));
 
     }
 

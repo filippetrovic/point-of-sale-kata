@@ -25,7 +25,7 @@ public class SimpleShoppingCart implements ShoppingCart {
     @Override
     public void put(ProductInfo productInfo) {
         products.add(productInfo);
-        total = total.plus(MoneyAmount.serbianDinars(productInfo.getPrice()));
+        total = total.plus(productInfo.getPrice());
     }
 
     @Override
@@ -36,7 +36,7 @@ public class SimpleShoppingCart implements ShoppingCart {
         }
 
         products.remove(productInfo);
-        total = total.minus(MoneyAmount.serbianDinars(productInfo.getPrice()));
+        total = total.minus(productInfo.getPrice());
     }
 
 }

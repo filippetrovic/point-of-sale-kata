@@ -39,6 +39,6 @@ class ProductInfoMessage implements Message {
     @Override
     public String getFormattedMessage() {
         // This should probably come from i18n file
-        return String.format("%s: %.2f", productInfo.getName(), productInfo.getPrice());
+        return String.format("%s: %.2f", productInfo.getName(), productInfo.getPrice().getAmount());
     }
 }

@@ -2,6 +2,7 @@ package software.craftsmanship.serbia.impl.catalog;
 
 import org.junit.*;
 import software.craftsmanship.serbia.impl.domain.barcode.*;
+import software.craftsmanship.serbia.impl.domain.money.*;
 
 import java.util.*;
 
@@ -16,7 +17,7 @@ public class CatalogTest {
         final Barcode barcode = BarcodeFactory.from("12399");
 
         Catalog catalog = new InMemoryCatalog(new HashMap<Barcode, ProductInfo>(){{
-            put(barcode, new ProductInfo("name", 22.1));
+            put(barcode, new ProductInfo("name", MoneyAmount.serbianDinars(22.1)));
         }});
 
         // When
@@ -25,7 +26,7 @@ public class CatalogTest {
         // Then
         assertThat(productInfo).isNotEmpty();
         assertThat(productInfo.get())
-            .isEqualTo(new ProductInfo("name", 22.1));
+            .isEqualTo(new ProductInfo("name", MoneyAmount.serbianDinars(22.1)));
 
     }
 
