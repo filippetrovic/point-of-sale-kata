@@ -13,6 +13,8 @@ public class PointOfSaleImpl implements PointOfSale {
     private SaleDisplay saleDisplay;
     private Catalog catalog;
 
+    private double totalAmount = 0.0;
+
     public PointOfSaleImpl(SaleDisplay saleDisplay, Catalog catalog) {
         this.saleDisplay = saleDisplay;
         this.catalog = catalog;
@@ -23,6 +25,9 @@ public class PointOfSaleImpl implements PointOfSale {
         final Optional<ProductInfo> productInfo = catalog.getProductInfo(BarcodeFactory.from(barcode));
 
         if (productInfo.isPresent()) {
+
+            totalAmount = productInfo.get().getPrice();
+
             saleDisplay.display(MessageFactory.productInfo(productInfo.get()));
         } else {
             saleDisplay.display(MessageFactory.productNotFound());
@@ -31,7 +36,7 @@ public class PointOfSaleImpl implements PointOfSale {
 
     @Override
     public String total() {
-        return "Total: 0.00";
+        return String.format("Total: %.2f", totalAmount);
     }
 
     @Override
