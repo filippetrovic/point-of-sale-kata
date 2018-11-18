@@ -1,25 +1,27 @@
 package software.craftsmanship.serbia.impl.display.message;
 
-class ProductNotFoundMessage implements Message {
+class ProductNotInShoppingCart implements Message {
+
+    public ProductNotInShoppingCart() {
+    }
 
     @Override
     public String getFormattedMessage() {
-        // This should probably come from i18n file
-        return "Product not found";
+        return "Product not found in shopping cart";
     }
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof ProductNotFoundMessage;
+        return obj instanceof ProductNotInShoppingCart;
     }
 
     @Override
     public int hashCode() {
-        return 33313;
+        return 2222;
     }
 
     @Override
     public String toString() {
-        return "ProductNotFoundMessage{}";
+        return "ProductNotInShoppingCart{}";
     }
 }

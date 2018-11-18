@@ -78,4 +78,19 @@ public class PointOfSaleOnBarcodeRemoveTest {
         verify(saleDisplay)
                 .display(MessageFactory.productNotFound());
     }
+
+    @Test
+    @Ignore
+    public void shouldDisplayProductNotInShoppingCartWhenRemovingBarcodeThatWasNotScannedBefore() {
+        // Given
+        // LAPTOP_BARCODE is not scanned
+
+        // When
+        pointOfSale.onBarcodeRemove(LAPTOP_BARCODE);
+
+        // Then
+        verify(saleDisplay)
+                .display(MessageFactory.productNotInShoppingCart());
+
+    }
 }

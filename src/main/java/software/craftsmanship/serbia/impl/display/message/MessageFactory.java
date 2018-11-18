@@ -15,4 +15,8 @@ public class MessageFactory {
     public static Message total(double totalAmount) {
         return new TotalMessage(totalAmount);
     }
+
+    public static Message productNotInShoppingCart() {
+        return new ProductNotInShoppingCart();
+    }
 }
