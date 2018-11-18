@@ -60,6 +60,7 @@ public class PointOfSaleImpl implements PointOfSale {
             return;
         }
 
+        shoppingCart.remove(productInfo.get());
         totalAmount -= productInfo.get().getPrice();
 
     }

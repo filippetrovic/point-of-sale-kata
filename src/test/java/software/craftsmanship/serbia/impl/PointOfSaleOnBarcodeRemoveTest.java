@@ -93,5 +93,19 @@ public class PointOfSaleOnBarcodeRemoveTest {
 
     }
 
-    // multiple remove
+    @Test
+    public void shouldDisplayProductNotInShoppingCartAfterItIsRemoved() {
+        // Given
+        pointOfSale.onBarcode(LAPTOP_BARCODE);
+        pointOfSale.onBarcodeRemove(LAPTOP_BARCODE);
+
+        // When
+        pointOfSale.onBarcodeRemove(LAPTOP_BARCODE);
+
+        // Then
+        verify(saleDisplay)
+                .display(MessageFactory.productNotInShoppingCart());
+
+    }
+
 }
