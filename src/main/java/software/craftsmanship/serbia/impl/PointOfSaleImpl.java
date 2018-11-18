@@ -5,6 +5,7 @@ import software.craftsmanship.serbia.impl.catalog.*;
 import software.craftsmanship.serbia.impl.display.*;
 import software.craftsmanship.serbia.impl.display.message.*;
 import software.craftsmanship.serbia.impl.domain.barcode.*;
+import software.craftsmanship.serbia.impl.domain.cart.*;
 
 import java.util.*;
 
@@ -12,13 +13,12 @@ public class PointOfSaleImpl implements PointOfSale {
 
     private SaleDisplay saleDisplay;
     private Catalog catalog;
-
-    private double totalAmount = 0.0;
-    private List<ProductInfo> shoppingCart = new LinkedList<>();
+    private ShoppingCart shoppingCart;
 
     public PointOfSaleImpl(SaleDisplay saleDisplay, Catalog catalog) {
         this.saleDisplay = saleDisplay;
         this.catalog = catalog;
+        shoppingCart = new ShoppingCart();
     }
 
     @Override
@@ -29,8 +29,8 @@ public class PointOfSaleImpl implements PointOfSale {
 
             final ProductInfo scannedProduct = productInfo.get();
 
-            shoppingCart.add(scannedProduct);
-            totalAmount += scannedProduct.getPrice();
+            shoppingCart.getShoppingCart().add(scannedProduct);
+            shoppingCart.setTotalAmount(shoppingCart.getTotalAmount() + scannedProduct.getPrice());
 
             saleDisplay.display(MessageFactory.productInfo(scannedProduct));
 
@@ -43,7 +43,7 @@ public class PointOfSaleImpl implements PointOfSale {
 
     @Override
     public void total() {
-        saleDisplay.display(MessageFactory.total(totalAmount));
+        saleDisplay.display(MessageFactory.total(shoppingCart.getTotalAmount()));
     }
 
     @Override
@@ -60,12 +60,12 @@ public class PointOfSaleImpl implements PointOfSale {
             return;
         }
 
-        shoppingCart.remove(productInfo.get());
-        totalAmount -= productInfo.get().getPrice();
+        shoppingCart.getShoppingCart().remove(productInfo.get());
+        shoppingCart.setTotalAmount(shoppingCart.getTotalAmount() - productInfo.get().getPrice());
 
     }
 
     private boolean isProductInShoppingCart(ProductInfo productInfo) {
-        return shoppingCart.contains(productInfo);
+        return shoppingCart.getShoppingCart().contains(productInfo);
     }
 }
