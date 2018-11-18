@@ -18,7 +18,7 @@ public class PointOfSaleImpl implements PointOfSale {
     public PointOfSaleImpl(SaleDisplay saleDisplay, Catalog catalog) {
         this.saleDisplay = saleDisplay;
         this.catalog = catalog;
-        shoppingCart = ShoppingCart.createEmptyShoppingCart();
+        shoppingCart = SimpleShoppingCart.createEmptyShoppingCart();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class PointOfSaleImpl implements PointOfSale {
 
     @Override
     public void total() {
-        saleDisplay.display(MessageFactory.total(shoppingCart.getTotalAmount()));
+        saleDisplay.display(MessageFactory.total(shoppingCart.getTotal()));
     }
 
     @Override
@@ -47,12 +47,11 @@ public class PointOfSaleImpl implements PointOfSale {
             return;
         }
 
-        if (!shoppingCart.contains(productInfo.get())) {
+        try {
+            shoppingCart.remove(productInfo.get());
+        } catch (ProductNotFound productNotFound) {
             saleDisplay.display(MessageFactory.productNotInShoppingCart());
-            return;
         }
-
-        shoppingCart.remove(productInfo.get());
 
     }
 

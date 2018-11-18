@@ -46,19 +46,6 @@ public class PointOfSaleTotalTest {
     }
 
     @Test
-    public void shouldReturnPriceOfOneProduct() {
-
-        // Given
-        pointOfSale.onBarcode(LAPTOP_BARCODE);
-
-        // When
-        pointOfSale.total();
-
-        // Then
-        verify(saleDisplay).display(MessageFactory.total(569.99));
-    }
-
-    @Test
     public void shouldReturnTotalPriceOfScannedProducts() {
 
         // Given
