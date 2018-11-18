@@ -18,7 +18,7 @@ public class PointOfSaleImpl implements PointOfSale {
     public PointOfSaleImpl(SaleDisplay saleDisplay, Catalog catalog) {
         this.saleDisplay = saleDisplay;
         this.catalog = catalog;
-        shoppingCart = new ShoppingCart();
+        shoppingCart = ShoppingCart.createEmptyShoppingCart();
     }
 
     @Override

@@ -5,7 +5,16 @@ import software.craftsmanship.serbia.impl.catalog.*;
 import java.util.*;
 
 public class ShoppingCart {
+
+    private List<ProductInfo> shoppingCart = new LinkedList<ProductInfo>();
     private double totalAmount = 0.0;
+
+    public static ShoppingCart createEmptyShoppingCart() {
+        return new ShoppingCart();
+    }
+
+    private ShoppingCart() {
+    }
 
     public double getTotalAmount() {
         return totalAmount;
@@ -15,12 +24,7 @@ public class ShoppingCart {
         this.totalAmount = totalAmount;
     }
 
-    private List<ProductInfo> shoppingCart = new LinkedList<ProductInfo>();
-
     public List<ProductInfo> getShoppingCart() {
         return shoppingCart;
-    }
-
-    public ShoppingCart() {
     }
 }
