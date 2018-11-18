@@ -1,13 +1,14 @@
 package software.craftsmanship.serbia.impl.domain.cart;
 
 import software.craftsmanship.serbia.impl.catalog.*;
+import software.craftsmanship.serbia.impl.domain.money.*;
 
 import java.util.*;
 
 public class SimpleShoppingCart implements ShoppingCart {
 
     private List<ProductInfo> products = new LinkedList<>();
-    private double totalAmount = 0.0;
+    private MoneyAmount total = MoneyAmount.serbianDinars(0.0);
 
     public static ShoppingCart createEmptyShoppingCart() {
         return new SimpleShoppingCart();
@@ -18,13 +19,13 @@ public class SimpleShoppingCart implements ShoppingCart {
 
     @Override
     public double getTotal() {
-        return totalAmount;
+        return total.getAmount();
     }
 
     @Override
     public void put(ProductInfo productInfo) {
         products.add(productInfo);
-        totalAmount += productInfo.getPrice();
+        total = total.plus(MoneyAmount.serbianDinars(productInfo.getPrice()));
     }
 
     @Override
@@ -35,7 +36,7 @@ public class SimpleShoppingCart implements ShoppingCart {
         }
 
         products.remove(productInfo);
-        totalAmount -= productInfo.getPrice();
+        total = total.minus(MoneyAmount.serbianDinars(productInfo.getPrice()));
     }
 
 }
