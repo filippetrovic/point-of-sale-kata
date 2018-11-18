@@ -26,18 +26,10 @@ public class PointOfSaleImpl implements PointOfSale {
         final Optional<ProductInfo> productInfo = catalog.getProductInfo(BarcodeFactory.from(barcode));
 
         if (productInfo.isPresent()) {
-
-            final ProductInfo scannedProduct = productInfo.get();
-
-            shoppingCart.getShoppingCart().add(scannedProduct);
-            shoppingCart.setTotalAmount(shoppingCart.getTotalAmount() + scannedProduct.getPrice());
-
-            saleDisplay.display(MessageFactory.productInfo(scannedProduct));
-
+            shoppingCart.put(productInfo.get());
+            saleDisplay.display(MessageFactory.productInfo(productInfo.get()));
         } else {
-
             saleDisplay.display(MessageFactory.productNotFound());
-
         }
     }
 
@@ -55,17 +47,13 @@ public class PointOfSaleImpl implements PointOfSale {
             return;
         }
 
-        if (!isProductInShoppingCart(productInfo.get())) {
+        if (!shoppingCart.contains(productInfo.get())) {
             saleDisplay.display(MessageFactory.productNotInShoppingCart());
             return;
         }
 
-        shoppingCart.getShoppingCart().remove(productInfo.get());
-        shoppingCart.setTotalAmount(shoppingCart.getTotalAmount() - productInfo.get().getPrice());
+        shoppingCart.remove(productInfo.get());
 
     }
 
-    private boolean isProductInShoppingCart(ProductInfo productInfo) {
-        return shoppingCart.getShoppingCart().contains(productInfo);
-    }
 }

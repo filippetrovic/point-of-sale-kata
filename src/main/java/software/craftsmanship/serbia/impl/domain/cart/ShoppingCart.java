@@ -6,7 +6,7 @@ import java.util.*;
 
 public class ShoppingCart {
 
-    private List<ProductInfo> shoppingCart = new LinkedList<ProductInfo>();
+    private List<ProductInfo> products = new LinkedList<>();
     private double totalAmount = 0.0;
 
     public static ShoppingCart createEmptyShoppingCart() {
@@ -20,11 +20,17 @@ public class ShoppingCart {
         return totalAmount;
     }
 
-    public void setTotalAmount(double totalAmount) {
-        this.totalAmount = totalAmount;
+    public void put(ProductInfo productInfo) {
+        products.add(productInfo);
+        totalAmount += productInfo.getPrice();
     }
 
-    public List<ProductInfo> getShoppingCart() {
-        return shoppingCart;
+    public void remove(ProductInfo productInfo) {
+        products.remove(productInfo);
+        totalAmount -= productInfo.getPrice();
+    }
+
+    public boolean contains(ProductInfo productInfo) {
+        return products.contains(productInfo);
     }
 }
