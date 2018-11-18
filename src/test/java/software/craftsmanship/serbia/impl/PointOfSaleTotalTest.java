@@ -7,11 +7,12 @@ import org.mockito.junit.*;
 import software.craftsmanship.serbia.*;
 import software.craftsmanship.serbia.impl.catalog.*;
 import software.craftsmanship.serbia.impl.display.*;
+import software.craftsmanship.serbia.impl.display.message.*;
 import software.craftsmanship.serbia.impl.domain.*;
 
 import java.util.*;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PointOfSaleTotalTest {
@@ -38,13 +39,10 @@ public class PointOfSaleTotalTest {
     public void shouldReturnZeroForTotal() {
 
         // When
-        final String total = pointOfSale.total();
+        pointOfSale.total();
 
         // Then
-        assertThat(total)
-                .isNotNull()
-                .isEqualToIgnoringNewLines("Total: 0.00");
-
+        verify(saleDisplay).display(MessageFactory.total(0.0));
     }
 
     @Test
@@ -54,12 +52,10 @@ public class PointOfSaleTotalTest {
         pointOfSale.onBarcode(LAPTOP_BARCODE);
 
         // When
-        String total = pointOfSale.total();
+        pointOfSale.total();
 
         // Then
-        assertThat(total)
-                .isNotNull()
-                .isEqualToIgnoringNewLines("Total: 569.99");
+        verify(saleDisplay).display(MessageFactory.total(569.99));
     }
 
     @Test
@@ -70,11 +66,9 @@ public class PointOfSaleTotalTest {
         pointOfSale.onBarcode(MONITOR_BARCODE);
 
         // When
-        String total = pointOfSale.total();
+        pointOfSale.total();
 
         // Then
-        assertThat(total)
-                .isNotNull()
-                .isEqualToIgnoringNewLines("Total: 914.98");
+        verify(saleDisplay).display(MessageFactory.total(914.98));
     }
 }

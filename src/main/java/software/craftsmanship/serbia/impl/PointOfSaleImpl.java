@@ -35,8 +35,8 @@ public class PointOfSaleImpl implements PointOfSale {
     }
 
     @Override
-    public String total() {
-        return String.format("Total: %.2f", totalAmount);
+    public void total() {
+        saleDisplay.display(MessageFactory.total(totalAmount));
     }
 
     @Override

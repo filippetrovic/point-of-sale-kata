@@ -1,6 +1,6 @@
 package software.craftsmanship.serbia.impl.display.message;
 
-import software.craftsmanship.serbia.impl.catalog.ProductInfo;
+import software.craftsmanship.serbia.impl.catalog.*;
 
 public class MessageFactory {
 
@@ -12,4 +12,7 @@ public class MessageFactory {
         return new ProductNotFoundMessage();
     }
 
+    public static Message total(double totalAmount) {
+        return null;
+    }
 }

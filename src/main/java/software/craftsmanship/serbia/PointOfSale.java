@@ -11,11 +11,9 @@ public interface PointOfSale {
 
 
     /**
-     * Returns message with sum of prices of scanned products.
-     *
-     * @return formatted, output-ready message representing total price of the sale
+     * Prints sum of prices of scanned products.
      */
-    String total();
+    void total();
 
     /**
      * Removes previously scanned product from current sale.
