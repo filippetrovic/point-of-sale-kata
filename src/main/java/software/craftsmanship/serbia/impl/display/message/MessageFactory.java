@@ -13,6 +13,6 @@ public class MessageFactory {
     }
 
     public static Message total(double totalAmount) {
-        return null;
+        return new TotalMessage(totalAmount);
     }
 }
