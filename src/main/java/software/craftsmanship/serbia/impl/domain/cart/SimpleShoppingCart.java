@@ -18,8 +18,8 @@ public class SimpleShoppingCart implements ShoppingCart {
     }
 
     @Override
-    public double getTotal() {
-        return total.getAmount();
+    public MoneyAmount getTotal() {
+        return total;
     }
 
     @Override

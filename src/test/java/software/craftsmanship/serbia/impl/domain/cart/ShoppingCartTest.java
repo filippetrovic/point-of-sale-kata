@@ -2,6 +2,7 @@ package software.craftsmanship.serbia.impl.domain.cart;
 
 import org.junit.*;
 import software.craftsmanship.serbia.impl.catalog.*;
+import software.craftsmanship.serbia.impl.domain.money.*;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -21,11 +22,11 @@ public class ShoppingCartTest {
         // carts is empty
 
         // when
-        double total = cart.getTotal();
+        MoneyAmount total = cart.getTotal();
 
         // then
         assertThat(total)
-                .isEqualTo(0.0);
+                .isEqualTo(MoneyAmount.serbianDinars(0.0));
 
     }
 
@@ -37,11 +38,11 @@ public class ShoppingCartTest {
         cart.put(new ProductInfo("dummy 2", 0.5));
 
         // When
-        double total = cart.getTotal();
+        MoneyAmount total = cart.getTotal();
 
         // Then
         assertThat(total)
-                .isEqualTo(121.0);
+                .isEqualTo(MoneyAmount.serbianDinars(121.0));
 
     }
 
@@ -70,11 +71,11 @@ public class ShoppingCartTest {
         cart.remove(new ProductInfo("product 3", 200));
 
         // When
-        double total = cart.getTotal();
+        MoneyAmount total = cart.getTotal();
 
         // Then
         assertThat(total)
-                .isEqualTo(200.0);
+                .isEqualTo(MoneyAmount.serbianDinars(200.0));
 
     }
 }

@@ -1,12 +1,14 @@
 package software.craftsmanship.serbia.impl.display.message;
 
+import software.craftsmanship.serbia.impl.domain.money.*;
+
 import java.util.*;
 
 class TotalMessage implements Message {
 
-    private final double totalAmount;
+    private final MoneyAmount totalAmount;
 
-    TotalMessage(double totalAmount) {
+    TotalMessage(MoneyAmount totalAmount) {
         this.totalAmount = totalAmount;
     }
 
@@ -15,7 +17,7 @@ class TotalMessage implements Message {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TotalMessage that = (TotalMessage) o;
-        return Double.compare(that.totalAmount, totalAmount) == 0;
+        return Objects.equals(totalAmount, that.totalAmount);
     }
 
     @Override
@@ -33,6 +35,6 @@ class TotalMessage implements Message {
     @Override
     public String getFormattedMessage() {
         // This should probably come from i18n file
-        return String.format("Total: %.2f", totalAmount);
+        return String.format("Total: %.2f", totalAmount.getAmount());
     }
 }

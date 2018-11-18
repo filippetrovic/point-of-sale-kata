@@ -1,6 +1,7 @@
 package software.craftsmanship.serbia.impl.display.message;
 
 import software.craftsmanship.serbia.impl.catalog.*;
+import software.craftsmanship.serbia.impl.domain.money.*;
 
 public class MessageFactory {
 
@@ -12,7 +13,7 @@ public class MessageFactory {
         return new ProductNotFoundMessage();
     }
 
-    public static Message total(double totalAmount) {
+    public static Message total(MoneyAmount totalAmount) {
         return new TotalMessage(totalAmount);
     }
 

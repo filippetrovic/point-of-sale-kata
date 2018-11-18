@@ -9,6 +9,7 @@ import software.craftsmanship.serbia.impl.catalog.*;
 import software.craftsmanship.serbia.impl.display.*;
 import software.craftsmanship.serbia.impl.display.message.*;
 import software.craftsmanship.serbia.impl.domain.barcode.*;
+import software.craftsmanship.serbia.impl.domain.money.*;
 
 import java.util.*;
 
@@ -42,7 +43,7 @@ public class PointOfSaleTotalTest {
         pointOfSale.total();
 
         // Then
-        verify(saleDisplay).display(MessageFactory.total(0.0));
+        verify(saleDisplay).display(MessageFactory.total(MoneyAmount.serbianDinars(0.0)));
     }
 
     @Test
@@ -56,6 +57,6 @@ public class PointOfSaleTotalTest {
         pointOfSale.total();
 
         // Then
-        verify(saleDisplay).display(MessageFactory.total(914.98));
+        verify(saleDisplay).display(MessageFactory.total(MoneyAmount.serbianDinars(914.98)));
     }
 }
