@@ -41,6 +41,7 @@ public class PointOfSaleImpl implements PointOfSale {
 
     @Override
     public void onBarcodeRemove(String barcode) {
-
+        final Optional<ProductInfo> productInfo = catalog.getProductInfo(BarcodeFactory.from(barcode));
+        totalAmount -= productInfo.get().getPrice();
     }
 }
